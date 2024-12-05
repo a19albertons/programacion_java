@@ -16,86 +16,26 @@ public class a4_2 {
             }
 
 //            Procesamos tablero
-//            Comprobamos si los 0 empiezan en primera linea o no
-            boolean arriba_abajo=false;
-            for (int i=0;i<tam_cuadrado;i++) {
-                if (tablero[0][i]==0){
-                    arriba_abajo=true;
-                    break;
-                }
-            }
+//            Enfoque basado en una solución vista como valida para acpeta el reto
+            boolean superior=true;
+            boolean inferior=true;
 
-//          Controla que sean 0
-            boolean devolver = true;
-            if (arriba_abajo) {
-                int contador=1;
-                for (int i=0;i<tam_cuadrado;i++){
-                    for (int j=contador;j<tam_cuadrado;j++){
-                        if (tablero[i][j] != 0) {
-//                            System.out.println("Soy ilegal");
-                            devolver = false;
-                            break;
-                        }
-                    }
-                    contador++;
-                }
-            }
-            else {
-                int contador=0;
-                for (int i=0;i<tam_cuadrado;i++){
-                    for (int j=0;j<contador;j++) {
-                        if (tablero[i][j] != 0) {
-//                            System.out.println("Soy ilegal");
-                            devolver = false;
-                            break;
-                        }
-                    }
-                    contador++;
-                }
-            }
-
-//            Controla que diagonal sea distinto de 0
-            boolean diagonal_legal=true;
             for (int i=0;i<tam_cuadrado;i++){
-                if (tablero[i][i]==0){
-                    diagonal_legal=false;
-                }
-            }
-
-
-
-
-//            Controla la parte del triangulo que debería ser distina de 0
-            boolean devolver_inverso = false;
-            if (!arriba_abajo) {
-                int contador=1;
-                for (int i=0;i<tam_cuadrado;i++){
-                    for (int j=contador;j<tam_cuadrado;j++){
-                        if (tablero[i][j] == 0) {
-//                            System.out.println("Soy ilegal");
-                            devolver_inverso = true;
-                            break;
-                        }
+                for (int j=0;j<tam_cuadrado;j++){
+//                    superior
+                    if (i!=j && j>i && tablero[i][j]!=0){
+                        superior=false;
                     }
-                    contador++;
-                }
-            }
-            else {
-                int contador=0;
-                for (int i=0;i<tam_cuadrado;i++){
-                    for (int j=0;j<contador;j++) {
-                        if (tablero[i][j] == 0) {
-//                            System.out.println("Soy ilegal");
-                            devolver_inverso = true;
-                            break;
-                        }
+                    //inferior
+                    if (i!=j && i>j && tablero[i][j]!=0){
+                        inferior=false;
                     }
-                    contador++;
                 }
+
             }
 
 //            salida
-            if (devolver && diagonal_legal && !devolver_inverso){
+            if (superior || inferior){
                 System.out.println("SI");
             }
             else {
