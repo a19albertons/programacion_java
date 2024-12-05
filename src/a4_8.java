@@ -12,24 +12,40 @@ public class a4_8 {
             //        Creacion tablero
             String[] tablero = new String[9];
             for (int j = 0; j < 9; j++) {
-
                 tablero[j] = sc.nextLine().replace(" ","");
             }
 
 //            Procesado tablero
 //            Procesado linea
             int linea=0;
+            boolean ilegal=false;
             for (int j=0;j<9;j++) {
                 int sub_linea=0;
                 for (int k=1;k<10;k++){
-                    if (tablero[i].contains(String.valueOf(k))){
+                    if (tablero[j].contains(String.valueOf(k))){
                         sub_linea+=1;
+                    }
+                    else {
+                        ilegal=true;
+                        break;
                     }
                 }
                 if (sub_linea==9){
                     linea+=1;
                 }
+
+                if (ilegal) {
+                    break;
+                }
             }
+
+            if (ilegal) {
+                System.out.println("NO");
+                continue;
+            }
+
+
+
 //            System.out.println(linea);
 
 //            Procesado arriba abajo
@@ -45,10 +61,21 @@ public class a4_8 {
                     if (otra_linea.contains(String.valueOf(k))){
                         sub_arriba_abajo++;
                     }
+                    else {
+                        ilegal=true;
+                        break;
+                    }
                 }
                 if (sub_arriba_abajo==9){
                     arriba_abajo+=1;
                 }
+                if (ilegal){
+                    break;
+                }
+            }
+            if (ilegal){
+                System.out.println("NO");
+                continue;
             }
 //            System.out.println(arriba_abajo);
             //            Procesado cuadrado
@@ -75,24 +102,33 @@ public class a4_8 {
                         if (subcuadro_string.contains(String.valueOf(p))){
                             sub_cuadrado++;
                         }
+                        else {
+                            ilegal=true;
+                            break;
+                        }
                     }
                     if (sub_cuadrado==9){
                         cuadrado+=1;
                     }
+                    if (ilegal){
+                        break;
+                    }
                 }
+                if (ilegal){
+                    break;
+                }
+            }
 
+            if (ilegal){
+                System.out.println("NO");
+                break;
             }
 //            System.out.println(cuadrado);
 
 
 
 //            Salida
-            if (linea==9 && arriba_abajo==9 && cuadrado==9){
-                System.out.println("SI");
-            }
-            else {
-                System.out.println("NO");
-            }
+            System.out.println("SI");
 
 
 
