@@ -19,18 +19,17 @@ public class a4_1 {
             boolean salir=false;
             int contador=0;
             for (int i=0;i<tam_cuadrado;i++){
-                if (tablero[i][i]==1 && !salir){
-                    contador+=1;
-                }
-                else {
-                    break;
-                }
                 for (int j=0;j<tam_cuadrado;j++) {
                     if (i!=j && tablero[i][j]!=0){
                         salir= true;
                         break;
                     }
-
+                }
+                if (tablero[i][i]==1 && salir==false){
+                    contador+=1;
+                }
+                else {
+                    break;
                 }
             }
 

@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class a4_2 {
@@ -26,7 +25,7 @@ public class a4_2 {
                 }
             }
 
-
+//          Controla que sean 0
             boolean devolver = true;
             if (arriba_abajo) {
                 int contador=1;
@@ -55,8 +54,48 @@ public class a4_2 {
                 }
             }
 
+//            Controla que diagonal sea distinto de 0
+            boolean diagonal_legal=true;
+            for (int i=0;i<tam_cuadrado;i++){
+                if (tablero[i][i]==0){
+                    diagonal_legal=false;
+                }
+            }
+
+
+
+
+//            Controla la parte del triangulo que debería ser distina de 0
+            boolean devolver_inverso = false;
+            if (!arriba_abajo) {
+                int contador=1;
+                for (int i=0;i<tam_cuadrado;i++){
+                    for (int j=contador;j<tam_cuadrado;j++){
+                        if (tablero[i][j] == 0) {
+//                            System.out.println("Soy ilegal");
+                            devolver_inverso = true;
+                            break;
+                        }
+                    }
+                    contador++;
+                }
+            }
+            else {
+                int contador=0;
+                for (int i=0;i<tam_cuadrado;i++){
+                    for (int j=0;j<contador;j++) {
+                        if (tablero[i][j] == 0) {
+//                            System.out.println("Soy ilegal");
+                            devolver_inverso = true;
+                            break;
+                        }
+                    }
+                    contador++;
+                }
+            }
+
 //            salida
-            if (devolver){
+            if (devolver && diagonal_legal && !devolver_inverso){
                 System.out.println("SI");
             }
             else {
